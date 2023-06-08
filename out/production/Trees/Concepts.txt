@@ -1,0 +1,95 @@
+
+#Edge :
+    is the link between the parent node and the child node
+
+#Trees aint have cycles, there must be a single path from the root node to any other child node in the tree to be called a tree
+
+#In a tree :
+    the number of edges = number of nodes - 1
+
+#Leaf node :
+    a node that aint have any child nodes
+
+#Binary/Ternary tree :
+    a tree in which each node can have max of Two/Three child nodes
+
+#Level of a node :
+    the level of the node is basically the number of edges between that node and the root node
+
+#Full tree :
+    a tree is called full when all of its nodes except for the leaf ones are max filled, and all its levels r filled as well
+
+#Complete tree :
+    when all its nodes r full except for the last node, and all the nodes r as far to the left as possible
+
+
+#Usage of Binary & Ternary trees :
+    1- Fast lookup
+    2- Addition & removal of elements
+    3- Implementation of lookup tables, dynamic sets & associative maps
+
+
+#Height of a tree :
+    the number of edges between the root node and the leaf node in that tree
+
+#Balanced tree :
+    a tree in which the difference of the height of its left sub-tree & the right sub-tree aint exceed one, considering the left and the right sub-trees are balanced
+
+#Heap :
+    Max/Min heap : the value of the parent node is bigger/smaller than the child nodes
+
+
+#Ternary trees "Prefix trees" :
+    They r used usually to store strings
+
+    #Its applications :
+        1- Text prediction
+        2- Text auto-completion
+        3- Lexicographic search
+
+    #Suffix trees :
+        Used to add suffixes to the texts
+
+-------------------------------------------------
+            BINARY SEARCH TREES
+
+
+#In Binary SEARCH trees, every left sub-node must be smaller that its parent, and every right sub-node must be bigger than its parent node, otherwise its called just a BINARY TREE n not a BINARY SEARCH TREE
+
+#In binary search trees "Balanced/Symmetric trees":
+    the min element lies in the leaf node of the absolute left & the max element lies in the leaf node of the absolute right
+
+#Inserting an element:
+    We start by checking the following node's value, if the element is bigger than the node's value we go right, otherwise we go left, and keep repeating the operation till we find an empty slot to we insert our element
+
+#Deletion:
+    1- Soft deletion :
+        Marking the element in the node as deleted, without actually deleting it
+    2- Hard deletion :
+        Absolutely deleting the node of the element
+
+    #Cases of deleting a node :
+
+        1- Deleting a leaf node:
+            To delete a leaf node, we just need to let the parent node refer to the leaf node by null
+
+        2- Deleting a node with one child :
+            To do so, we replace the parent node by the child node, then delete the child node and update the root node point to the grandchild "the new parent node" so we dont lose the information stored in that grandchild ndoe
+
+        3- Deletion of a node with two child nodes :
+            To do so, we give that node the value of the smallest node in its tree "The predecessor" or the value of the largest node in its tree "the successor", and then we delete that predecessor/successor node as a leaf ndoe
+
+#Traversing a tree :
+
+    1- In-order :
+        The traverse gonna take the following path, left sub-tree => Root => Right sub-tree
+
+    2- Pre-order :
+        Root => left sub-tree => right sub-tree
+
+    3- Post-order :
+        left sub-tree => right sub-tree => Root
+
+
+
+
