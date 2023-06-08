@@ -15,6 +15,13 @@ public class Main {
         }
 
         System.out.println("\n"+binarySearchTree.toString());
+        System.out.println("Max in the BST : "+binarySearchTree.getMax());
+        System.out.println("Min in the BST : "+binarySearchTree.getMin());
+        System.out.println("Min in the node of the value 1 :"+binarySearchTree.getNode(1));
+
+        System.out.println("\nIn-Order traversing a tree : ");
+        binarySearchTree.traverse();
+
 
 //        System.out.println(binarySearchTree.getMatchingNode(3, binarySearchTree.getMainNode()));
     }

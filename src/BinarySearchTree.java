@@ -137,7 +137,21 @@ public class BinarySearchTree <T extends Comparable<T>> implements Tree<T>{
         return node.getData();
     }
 
-
+    public Node<T> getNode(T value){
+        Node<T> node = root;
+        while (node.getRightChild() != null && node.getLeftChild() != null) {
+            if (value.compareTo(node.getData()) > 0) {
+                node = node.getRightChild();
+            } else if (value.compareTo(node.getData()) < 0) {
+                node = node.getLeftChild();
+            }
+        }
+        if (node.getData() == value) {
+            return node;
+        } else {
+            return null;
+        }
+    }
     //NEED SOME WORK, ITS PRINTING THE WHOLE BINARY SEARCH TREE AGAIN AND NOT THE NODE WE ARE LOOKING FOR!!!
 //    public Node<T> getMatchingNode(T data, Node<T> node) {
 //        if (data.compareTo(node.getData()) < 0) {

@@ -90,6 +90,177 @@
     3- Post-order :
         left sub-tree => right sub-tree => Root
 
+----------------------------------------------------------------------------
+                            AVL TREES
+
+# An AVL "Adelson-Valsky & Lnadis" tree is basically a BST, with a difference in the balancing.
+
+#An AVL tree is a self-balancing BST, as in the regular BST the avg time complexity is "O(logn)" we might encounter cases in which the time complexity turns into O(n)
+ in case the BST aint balanced which makes it like traversing a list more like!
+
+#Balancing a tree is done by applying "Rotation", for example :
+
+1] Left-Heavy situation :
+
+                10
+            6        null
+         4     9
+
+    -> To balance this tree, we need to rotate the root node to the right, and then rearrange the tree
+       Like the following :
+
+                   6
+            4            10
+       null   null     9    null
+
+    -> This case is called, left-heavy situation or left-left situation, solved using a single rotation
+
+2] Right-Heavy situation :
+
+            10
+      null       20
+              15    22
+
+    -> Here we apply a left rotation, as the following :
+
+             20
+        10        22
+   null     15
+
+    -> The properties of the BST r maintained while doing the rotation, and the heights of the nodes r being constantly updated with every rotation
+
+3] Left-Right situation :
+
+            10
+        6       null
+    null   9
+
+    -> Here we can neither perform the left-Heavy situation rotation on the root, nor the right-Heavy cuz one will give us a null valued root, and the other will give us a tree with a left child bigger than the parent
+       Thus, if we check the balance of the leftChild node, we see that its (0 - 1) the height of its left child minus the height of its right, and as it equals -1, we perform a left rotation on it "On the left sub-tree"!
+
+            10
+        9       null
+     6    null
 
 
+    -> As we see here, we r left with the left-Heavy situation, thus we perform a right rotation
+
+            9
+         6     10
+
+4] Right-Left situation :
+
+            10
+     null        16
+              12    null
+
+     -> Here we perform a left rotation to the right sub-tree, and then the right-Heavy situation's rotation on the main tree
+
+             10
+     null         12
+             null     16
+
+
+     -> Right-Heavy rotation :
+
+               12
+           10      16
+
+----------------------------------------------
+               Black-Red trees
+
+#A Red-Black tree is a BST, though a self-balancing one, which differs from the AVL trees by the fact that it aint strictly balanced, as the height between the right & left sub-trees might exceed one sometimes, unlike in the AVL as it always must be in the range [-1,1].
+
+#The root node in the RBT must always be black! Null nodes r considered black nodes as well.
+
+#Every red node's parent and children MUST be black nodes!
+
+#The path from a given node to any null node of its null nodes, must contain the same number of black nodes!
+
+#How to maintain the balance of a RBT :
+    -> By recoloring the nodes by "Black" or "Red" the way faster method
+    -> Also by doing the 4 cases rotation
+
+#When to recolor & when to rotate?
+    -> We recolor when the sibling of the parent of the node we r adding is red
+    -> We applly the rotation when the parent of the node we r adding aint have a sibling or has a black sibling
+
+#When a node is inserted, it's always a red node
+
+#In the recoloring, lets take the following RBT :
+
+                           |
+                        Black(10)
+                 Red(6)          Red(13)
+
+    -> Lets say we wanna insert a node of the value 2, its gon b a red node and inserted as a left child of the node Red(6)
+       respecting the laws of a BST, as the RBT is basically a BST!
+
+                           |
+                        Black(10)
+                  Red(6)          Red(13)
+             Red(2)
+
+    -> Now, as the parent of the added node has a red sibling, we can do a recoloring without the need for the rotation!
+       To recolor, we simply switch the colors of the other nodes except the added one "The red become black , and vise-versa"!
+
+                          |
+                        Red(10)
+               Black(6)         Black(13)
+          Red(2)
+
+    -> #NOTE! that we need to check for the upper nodes "grandparent" nodes of the inserted nodes for recoloring
+       if its needed, then we keep recoloring till we reach the root node, to maintain the tree as a RBT
+
+#The rotation case for the RBT :
+
+                           |
+                        Black(10)
+                  Red(6)          Black(Null)
+             Red(4)
+
+
+     -> Here we need to apply the left-heavy situation's rotation, and then recolor cuz the tree we will get after the rotation, will be violating the RBT rules
+
+        -> Rotate :
+                           |
+                        Red(6)
+                  Red(4)       Black(10)
+
+        -> Recolor :
+                           |
+                        Black(6)
+                  Red(4)       Red(10)
+
+     -> #NOTE! the same logic applies on the right-heavy situation here..
+
+
+     -> Left-Right situation :
+
+                           |
+                        Black(10)
+                Red(6)             Black(Null)
+     Black(Null)      Red(9)
+
+
+     -> To balance the tree, we apply a left rotation on its left sub-Tree "The Red(6) node", and then a right rotation on the whole tree "The root node"!
+
+                           |
+                        Black(10)
+                 Red(9)           Black(Null)
+           Red(6)
+
+     -> Now the right rotation :
+
+                           |
+                        Red(9)
+                 Red(6)       Black(10)
+
+     -> Now we do the recoloring :
+
+                           |
+                        Black(9)
+                 Red(6)          Red(10)
+
+     -> #NOTE! Same logic applies on the Right-Left situation!
 
